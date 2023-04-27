@@ -5,6 +5,8 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     Vector3 rotation;
+    [SerializeField]
+    private GameObject camera;
 
     // User this for initilization
     void Start() {
@@ -21,12 +23,12 @@ public class Test : MonoBehaviour
 
             // rotation += new Vector3(90, 0, 0) * Time.deltaTime;
             // this.transform.eulerAngles = rotation;
-            // this.transform.Rotate(new Vector3(90, 0, 0) * Time.deltaTime); // Same as above it. recommand it!!
+            this.transform.Rotate(new Vector3(90, 0, 0) * Time.deltaTime); // Same as above it. recommand it!!
             // this.transform.eulerAngles += new Vector3(90, 0 ,0) * Time.deltaTime; //FIXME: It has ERROR, when rotation is over 90.
 
             //Other way to rotate
-            rotation += new Vector3(90, 0, 0) * Time.deltaTime;
-            this.transform.rotation = Quaternion.Euler(rotation);
+            // rotation += new Vector3(90, 0, 0) * Time.deltaTime;
+            // this.transform.rotation = Quaternion.Euler(rotation); // FIXME: If you change rotation while rotating, Changed rotation isn't applied.
             // Why use it? -> When any rotation is 90, other rotation has error in euler. (GIMBAL LOCK)
 
 
@@ -35,5 +37,10 @@ public class Test : MonoBehaviour
         }
         // Time : Class include something relate time
         // deltatime is Δt. `new Vector3(0, 0, 1) * Time.deltaTime` mean that move 1 per 1 sec to Z axis.
+
+        else if (Input.GetKey(KeyCode.Space))
+        {
+            this.transform.LookAt(camera.transform.position);
+        }
     }
 }
