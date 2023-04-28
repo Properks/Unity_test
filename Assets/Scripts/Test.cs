@@ -21,15 +21,21 @@ public class Test : MonoBehaviour
         {
             // this.transform.Translate(Vector3.forward * Time.deltaTime);
             // myRigid.velocity = Vector3.forward;
-            myRigid.MovePosition(this.transform.position + Vector3.forward * 5);
+
+            // myRigid.MovePosition(this.transform.position + Vector3.forward * 5);
             // Regardless mass and inertia
+
+            myRigid.AddForce(Vector3.forward); // Affected by mass and Drag
         }
         else if (Input.GetKey(KeyCode.E))
         {
             // myRigid.angularVelocity = Vector3.up;
-            rotation += Vector3.up * 90 * Time.deltaTime;
-            myRigid.MoveRotation(Quaternion.Euler(rotation));
+            
+            // rotation += Vector3.up * 90 * Time.deltaTime;
+            // myRigid.MoveRotation(Quaternion.Euler(rotation));
             // Regardless mass and inertia
+
+            myRigid.AddTorque(Vector3.up * 90); // Affected by mass and Drag
         }
     }
 }
