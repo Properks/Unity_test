@@ -5,41 +5,29 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
 
-    // [SerializeField]
-    private Rigidbody myRigid;
+    private BoxCollider myCollider;
     private Vector3 rotation;
-
     // User this for initilization
     void Start() {
-        myRigid = GetComponent<Rigidbody>();
         rotation = this.transform.eulerAngles;
+        myCollider = GetComponent<BoxCollider>();
     }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            // this.transform.Translate(Vector3.forward * Time.deltaTime);
-            // myRigid.velocity = Vector3.forward;
-
-            // myRigid.MovePosition(this.transform.position + Vector3.forward * 5);
-            // Regardless mass and inertia
-
-            myRigid.AddForce(Vector3.forward * 10); // Affected by mass and Drag
+            Debug.Log("Collider bounds : " + myCollider.bounds); // Center of bounds : Position + Scale * center
+            Debug.Log("Collider extents of bounds : " + myCollider.bounds.extents); // Half of Scale * size
+            Debug.Log("Collider x of extents of bounds : " + myCollider.bounds.extents.x); // x of extents
+            Debug.Log("Collider size : " + myCollider.size); // size of box collider
+            Debug.Log("Collider center : " + myCollider.center); // center of collider
+            // All of them except extents and extents x can be changed
         }
         else if (Input.GetKey(KeyCode.E))
         {
-            // myRigid.angularVelocity = Vector3.up;
-            
-            // rotation += Vector3.up * 90 * Time.deltaTime;
-            // myRigid.MoveRotation(Quaternion.Euler(rotation));
-            // Regardless mass and inertia
-
-            myRigid.AddTorque(Vector3.up * 90); // Affected by mass and Drag
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            myRigid.AddExplosionForce(10, this.transform.right, 10);
+            rotation += Vector3.up * 90 * Time.deltaTime;
+            this.transform.rotation = Quaternion.Euler(rotation);
         }
     }
 }
