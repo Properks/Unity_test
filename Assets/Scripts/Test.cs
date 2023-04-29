@@ -25,7 +25,7 @@ public class Test : MonoBehaviour
             // myRigid.MovePosition(this.transform.position + Vector3.forward * 5);
             // Regardless mass and inertia
 
-            myRigid.AddForce(Vector3.forward); // Affected by mass and Drag
+            myRigid.AddForce(Vector3.forward * 10); // Affected by mass and Drag
         }
         else if (Input.GetKey(KeyCode.E))
         {
@@ -36,6 +36,10 @@ public class Test : MonoBehaviour
             // Regardless mass and inertia
 
             myRigid.AddTorque(Vector3.up * 90); // Affected by mass and Drag
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            myRigid.AddExplosionForce(10, this.transform.right, 10);
         }
     }
 }
