@@ -6,24 +6,25 @@ public class Test : MonoBehaviour
 {
 
     private BoxCollider myCollider;
+    private Rigidbody myRigid;
     private Vector3 rotation;
     // User this for initilization
     void Start() {
         rotation = this.transform.eulerAngles;
         myCollider = GetComponent<BoxCollider>();
+        myRigid = GetComponent<Rigidbody>();
     }
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0)) // 0 is left button.
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Main camera shot ray to mouse position.
-            RaycastHit hitInfo;
-            if (myCollider.Raycast(ray, out hitInfo, 1000)) // If ray shot to collider in 1000 distance, Data store in hitInfo and return boolean value. 
-            {
-                this.transform.position = hitInfo.point;
-                Debug.Log(hitInfo.distance);
-            }
-        }
+    
+    private void OnTriggerStay(Collider other) { // When other collider is in collider
+        other.transform.position += new Vector3(0, 0, 0.1f);
+    }
+
+    private void OnTriggerExit(Collider other) { // When other collider exit in collider
+        myRigid.useGravity = true;
+    }
+
+    private void OnTriggerEnter(Collider other) { // When other collider enter in collider
+        myRigid.useGravity = false;
+        myRigid.velocity = Vector3.zero;
     }
 }
