@@ -14,17 +14,17 @@ public class Test : MonoBehaviour
         myCollider = GetComponent<BoxCollider>();
         myRigid = GetComponent<Rigidbody>();
     }
+
+    private void OnCollisionEnter(Collision other) {
+        myRigid.AddForce(Vector3.up * 30);
+        other.transform.Translate(Vector3.down * 0.1f);
+    }
     
-    private void OnTriggerStay(Collider other) { // When other collider is in collider
-        other.transform.position += new Vector3(0, 0, 0.1f);
-    }
+    // private void OnCollisionStay(Collision other) {
 
-    private void OnTriggerExit(Collider other) { // When other collider exit in collider
-        myRigid.useGravity = true;
-    }
+    // }
 
-    private void OnTriggerEnter(Collider other) { // When other collider enter in collider
-        myRigid.useGravity = false;
-        myRigid.velocity = Vector3.zero;
-    }
+    // private void OnCollisionExit(Collider other) { // When other collider exit in collider
+
+    // }
 }
