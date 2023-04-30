@@ -15,19 +15,15 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetMouseButtonDown(0)) // 0 is left button.
         {
-            Debug.Log("Collider bounds : " + myCollider.bounds); // Center of bounds : Position + Scale * center
-            Debug.Log("Collider extents of bounds : " + myCollider.bounds.extents); // Half of Scale * size
-            Debug.Log("Collider x of extents of bounds : " + myCollider.bounds.extents.x); // x of extents
-            Debug.Log("Collider size : " + myCollider.size); // size of box collider
-            Debug.Log("Collider center : " + myCollider.center); // center of collider
-            // All of them except extents and extents x can be changed
-        }
-        else if (Input.GetKey(KeyCode.E))
-        {
-            rotation += Vector3.up * 90 * Time.deltaTime;
-            this.transform.rotation = Quaternion.Euler(rotation);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Main camera shot ray to mouse position.
+            RaycastHit hitInfo;
+            if (myCollider.Raycast(ray, out hitInfo, 1000)) // If ray shot to collider in 1000 distance, Data store in hitInfo and return boolean value. 
+            {
+                this.transform.position = hitInfo.point;
+                Debug.Log(hitInfo.distance);
+            }
         }
     }
 }
