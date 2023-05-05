@@ -4,27 +4,22 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-
-    private BoxCollider myCollider;
-    private Rigidbody myRigid;
-    private Vector3 rotation;
+    [SerializeField] // Set in unity
+    private Material red_Mat;
+    [SerializeField]
+    private Material green_Mat;
+    private MeshRenderer mesh;
     // User this for initilization
     void Start() {
-        rotation = this.transform.eulerAngles;
-        myCollider = GetComponent<BoxCollider>();
-        myRigid = GetComponent<Rigidbody>();
+        mesh = GetComponent<MeshRenderer>();
     }
 
-    private void OnCollisionEnter(Collision other) {
-        myRigid.AddForce(Vector3.up * 30);
-        other.transform.Translate(Vector3.down * 0.1f);
+    void Update() {
+        if (Input.GetMouseButton(0)) { // In architecture, Change materials(color) depending on whether it can built in or not.
+            mesh.material = green_Mat;
+        }
+        else if (Input.GetMouseButtonUp(0)) {
+            mesh.material = red_Mat;
+        }
     }
-    
-    // private void OnCollisionStay(Collision other) {
-
-    // }
-
-    // private void OnCollisionExit(Collider other) { // When other collider exit in collider
-
-    // }
 }
