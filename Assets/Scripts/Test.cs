@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    [SerializeField] // Set in unity
-    private Material red_Mat;
     [SerializeField]
-    private Material green_Mat;
-    private MeshRenderer mesh;
+    private GameObject target;
+    [SerializeField]
+    private float speed;
+    private Vector3 distance; // distance between camera and target;
     // User this for initilization
     void Start() {
-        mesh = GetComponent<MeshRenderer>();
+        distance = transform.position - target.transform.position;
+        // distance = new Vector3(Mathf.Abs(distance.x), Mathf.Abs(distance.y), Mathf.Abs(distance.z));
     }
 
     void Update() {
-        if (Input.GetMouseButton(0)) { // In architecture, Change materials(color) depending on whether it can built in or not.
-            mesh.material = green_Mat;
-        }
-        else if (Input.GetMouseButtonUp(0)) {
-            mesh.material = red_Mat;
-        }
+        this.transform.LookAt(target.transform.position);
+        this.transform.position = Vector3.Lerp(this.transform.position, target.transform.position + distance, speed);
     }
 }
