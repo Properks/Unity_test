@@ -23,7 +23,9 @@ public class Scripts_for_X : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (Input.GetKey(KeyCode.RightArrow)) {
-            myRigid.AddForce(Vector3.right);
+            // myRigid.AddForce(Vector3.right);
+            this.transform.Translate(Vector3.right * 5 * Time.deltaTime);
+            myRigid.velocity = Vector3.right * 0.00001f;
         }
         else if (Input.GetKey(KeyCode.LeftArrow)){
             myRigid.AddForce(Vector3.left);
