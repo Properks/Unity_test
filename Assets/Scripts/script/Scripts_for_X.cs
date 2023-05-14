@@ -5,13 +5,12 @@ using UnityEngine;
 public class Scripts_for_X : MonoBehaviour
 {
     private Rigidbody myRigid;
-    [SerializeField]
-    private GameObject field;
+    [SerializeField] private GameObject field;
     private Vector3 first_position;
 
     private Animator animator;
-    [SerializeField]
-    private float movespeed;
+    [SerializeField] private float movespeed;
+    private bool ismove;
     // Start is called before the first frame update
     void Start() {
         myRigid = GetComponent<Rigidbody>();
@@ -26,28 +25,17 @@ public class Scripts_for_X : MonoBehaviour
         
         Vector3 direction = new Vector3(dirX, 0, dirZ);
         // Movement
+        ismove = false;
         if (direction != Vector3.zero) {
+            ismove = true;
             this.transform.Translate(direction.normalized * movespeed * Time.deltaTime); // normalized, if direction is (1, 0, 1), move to diagonal with 2speed, so use it to make speed is 1
         }
+        animator.SetBool("Move", ismove);
+        animator.SetFloat("DirX", direction.x);
+        animator.SetFloat("DirZ", direction.z);
 
         // Set animation
-        animator.SetBool("Right", false);
-        animator.SetBool("Left", false);
-        animator.SetBool("Forward", false);
-        animator.SetBool("Back", false);
 
-        if (direction.x > 0) {
-            animator.SetBool("Right", true);
-        }
-        else if (direction.x < 0) {
-            animator.SetBool("Left", true);
-        }
-        else if (direction.z > 0) {
-            animator.SetBool("Forward", true);
-        }
-        else if (direction.z < 0) {
-            animator.SetBool("Back", true);
-        }
 
         // if it fall under field, reset position
         if (this.transform.position.y < field.transform.position.y - this.transform.localScale.y) {
