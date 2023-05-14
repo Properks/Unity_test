@@ -640,7 +640,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103233087}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1103233091
 Transform:
   m_ObjectHideFlags: 0
@@ -685,9 +685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73606d41a6bd1414db977011c7be3332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stop_Mat: {fileID: 2100000, guid: 612853b149bec47109e07b580b7e680c, type: 2}
-  move_Mat: {fileID: 2100000, guid: 4f8cb0ccde82241a78bdeece2fb701ae, type: 2}
   field: {fileID: 845213752}
+  movespeed: 6
 --- !u!95 &1103233095
 Animator:
   serializedVersion: 5
@@ -792,7 +791,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
