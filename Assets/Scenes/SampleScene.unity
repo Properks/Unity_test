@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 845213755}
   - component: {fileID: 845213754}
   - component: {fileID: 845213753}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,7 +686,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   field: {fileID: 845213752}
+  Bottom:
+    serializedVersion: 2
+    m_Bits: 8
   movespeed: 6
+  jumpforce: 50
 --- !u!95 &1103233095
 Animator:
   serializedVersion: 5
@@ -797,7 +801,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 8.517e-42, z: 1.02e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
