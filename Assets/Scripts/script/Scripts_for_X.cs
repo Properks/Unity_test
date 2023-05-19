@@ -6,7 +6,7 @@ public class Scripts_for_X : MonoBehaviour
 {
     private Rigidbody myRigid;
     private BoxCollider col;
-    [SerializeField] private GameObject field, particle;
+    [SerializeField] private GameObject field;
     [SerializeField] private LayerMask Bottom;
     private Vector3 first_position;
 
@@ -29,7 +29,6 @@ public class Scripts_for_X : MonoBehaviour
         Jump();
 
         Initialize_position();
-        particle.transform.position = this.transform.position + new Vector3(0, col.bounds.extents.y, 0);
     }
     
     private void Change_Flash_according_to_move() {
